@@ -39,8 +39,8 @@ else:
 
 file_to_send = r'C:\Users\woprg\Desktop\Secure Comms Project\testfile.txt'
 
-file = open(file_to_send,'r')
-file_data = list(file.read().encode('utf-8'))
+file = open(file_to_send,'rb')
+file_data = list(file.read())
 
 file_data_arr = []
 for x in range(0, int(math.ceil(float(len(file_data))/keysize))):
