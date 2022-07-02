@@ -37,7 +37,7 @@ server.listen()
 
 print("[LISTENING] Server is listening.")
 
-data = None
+data = []
 
 private_key = None
 
@@ -53,8 +53,12 @@ while True:
         password=None,
         backend=default_backend()
     )
-    recv_data = conn.recv(SIZE)
-    data = pickle.loads(recv_data)
+    while True:
+        recv_data = conn.recv(SIZE)
+        if not recv_data:
+            break
+        #data.append(pickle.loads(recv_data))
+        data.append(recv_data)
     data = decrypt(data)
     with open('result.txt','w+') as f:
         f.writelines(data)

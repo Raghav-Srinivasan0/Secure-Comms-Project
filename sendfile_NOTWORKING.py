@@ -52,15 +52,15 @@ for x in range(0, int(math.ceil(float(len(file_data))/keysize))):
             label=None
         )
     )
-    print(temp)
+    #print(temp)
     file_data_arr.append(temp)
     del file_data[:keysize]
 
-print(file_data_arr)
+#print(file_data_arr)
 
 to_send = pickle.dumps(file_data_arr)
 
-print(to_send)
+#print(to_send)
 
 s = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
 s.connect((HOST, PORT))
@@ -70,7 +70,7 @@ s.send(private_key.private_bytes(
     encryption_algorithm=serialization.NoEncryption()
 ))
 msg = s.recv(SIZE).decode(FORMAT)
-print(f"[SERVER]: {msg}")
+#print(f"[SERVER]: {msg}")
 s.sendall(to_send)
 
 file.close()
